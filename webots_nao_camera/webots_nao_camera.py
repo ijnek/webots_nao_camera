@@ -103,14 +103,17 @@ class ImageServer:
 
 class WebotsNaoCamera(Node):
 
-    def __init__(self, node_name='gc_spl', **kwargs):
+    def __init__(self, node_name='webots_nao_camera', **kwargs):
         super().__init__(node_name, **kwargs)
 
         # Create image publisher
         self._publisher = self.create_publisher(Image, 'image', 10)
 
-        TCP_BASE_PORT = 10000
-        addr = ("localhost", TCP_BASE_PORT + 1)
+        # Parameters
+        port = self.declare_parameter('port', 10001).value
+        self.get_logger().debug('port: {}'.format(port))
+
+        addr = ("localhost", port)
         self._sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self._sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self._sock.connect(addr)

@@ -20,6 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'webots_nao_camera = webots_nao_camera.webots_nao_camera:main',
         ],
     },
 )
