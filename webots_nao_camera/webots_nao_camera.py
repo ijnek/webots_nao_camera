@@ -142,7 +142,7 @@ class WebotsNaoCamera(Node):
                 msg = Image()
                 msg.height = height
                 msg.width = width
-                msg.encoding = "yuv422"
+                msg.encoding = "yuv422_yuy2"
                 msg.step = width * bpp
                 msg.data = data
                 # print(len(msg.data))
